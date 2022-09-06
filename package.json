@@ -1,8 +1,19 @@
 {
+  "type": "module",
+  "main": "lib/main.js",
   "scripts": {
-    "start": "tsc && node main.js"
+    "start": "tsc && node --experimental-specifier-resolution=node lib/main.js",
+    "dev:tsc": "tsc --watch -p .",
+    "nodemon": "nodemon --exec ts-node -- src/main.ts"
   },
   "dependencies": {
+    "@hapi/hapi": "^20.2.2",
+    "@types/hapi__hapi": "^20.0.12",
+    "@types/node": "^18.7.15",
     "nats": "^2.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1"
   }
 }
