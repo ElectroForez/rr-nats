@@ -7,11 +7,12 @@ export const createServer = async() => {
         host: "localhost"
     });
 
-    const routesPath = glob.sync("./api/*/*.route.ts", {cwd: "./src"});
-    for (const routePath of routesPath) {
-        const routeName = routePath.split('.').slice(0, -1).join('.'); //delete .ts
-        const {route} = await import(routeName);
-        server.route(route);
+    const routesPaths = glob.sync("./api/*/*.routes.ts", {cwd: "./src"});
+    for (const routesPath of routesPaths) {
+        const routesName = routesPath.split('.').slice(0, -1).join('.'); //delete .ts
+        const {routes} = await import(routesName);
+        server.route(routes);
+        console.log(`added routes from ${routesName}`)
     }
 
     await server.start();
