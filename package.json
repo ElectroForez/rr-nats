@@ -1,19 +1,19 @@
 {
   "type": "module",
-  "main": "lib/main.js",
   "scripts": {
-    "start": "tsc && node --experimental-specifier-resolution=node lib/main.js",
-    "dev:tsc": "tsc --watch -p .",
-    "nodemon": "nodemon --exec ts-node -- src/main.ts"
+    "start": "tsc && npm run main.js",
+    "main.js": "node --experimental-specifier-resolution=node lib/main.js",
+    "dev:watch": "tsc-watch --onSuccess 'npm run main.js'"
   },
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
+    "@types/glob": "^8.0.0",
     "@types/hapi__hapi": "^20.0.12",
     "@types/node": "^18.7.15",
+    "glob": "^8.0.3",
     "nats": "^2.7.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19",
-    "ts-node": "^10.9.1"
+    "tsc-watch": "^5.0.3"
   }
 }
