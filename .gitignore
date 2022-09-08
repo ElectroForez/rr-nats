@@ -1,4 +1,4 @@
 .idea/
 *.js
 node_modules/
-test.js
+lib/
