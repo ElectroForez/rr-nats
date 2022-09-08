@@ -1,13 +1,11 @@
 import Hapi from "@hapi/hapi";
 import glob from "glob";
+import {config} from "./config";
 
 export const createServer = async() => {
-    const server = Hapi.server({
-        port: 3000,
-        host: "localhost"
-    });
+    const server = Hapi.server(config.server);
 
-    const routesPaths = glob.sync("./api/*/*.routes.ts", {cwd: "./src"});
+    const routesPaths = glob.sync("./*/*.routes.ts", {cwd: "./src/api"});
     for (const routesPath of routesPaths) {
         const routesName = routesPath.split('.').slice(0, -1).join('.'); //delete .ts
         const {routes} = await import(routesName);
