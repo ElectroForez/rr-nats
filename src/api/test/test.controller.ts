@@ -15,8 +15,12 @@ export class TestController {
     }
 
     async getTest() {
-        const sc = StringCodec();
-        const result = await this.transport.request(StorageMethods.getMessageById, sc.encode("1"));
-        return result;
+        try {
+            const sc = StringCodec();
+            const result = await this.transport.request(StorageMethods.getMessageById, sc.encode("1"));
+            return result;
+        } catch (e) {
+            console.error(e);
+        }
     }
 }

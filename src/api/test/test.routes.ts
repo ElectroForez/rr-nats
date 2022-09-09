@@ -1,7 +1,9 @@
 import {TestController} from "./test.controller";
 
 const testController = new TestController();
-await testController.connect();
+(async () => {
+    await testController.connect();
+})()
 
 export const routes = [
     {

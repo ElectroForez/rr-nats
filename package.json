@@ -1,11 +1,9 @@
 {
-  "type": "module",
   "scripts": {
-    "start": "tsc && npm run all",
-    "all": "npm run api & npm run storage",
-    "api": "env-cmd node --experimental-specifier-resolution=node lib/api/main.js",
-    "storage": "env-cmd node --experimental-specifier-resolution=node lib/storage/main.js",
-    "dev:watch": "tsc-watch --onSuccess 'npm run all'"
+    "start": "npm run api & npm run storage",
+    "api": "env-cmd ts-node src/api/main.ts",
+    "storage": "env-cmd ts-node src/storage/main.ts",
+    "dev:watch": "tsc-watch --onSuccess 'npm start'"
   },
   "dependencies": {
     "@hapi/hapi": "^20.2.2",
@@ -14,7 +12,8 @@
     "@types/node": "^18.7.15",
     "env-cmd": "^10.1.0",
     "glob": "^8.0.3",
-    "nats": "^2.7.1"
+    "nats": "^2.7.1",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "tsc-watch": "^5.0.3"
