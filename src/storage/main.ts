@@ -1,16 +1,11 @@
 import {StorageController} from "./storage.controller";
 import {StorageMethods} from "../common/constants"
-import {StringCodec} from "nats";
+import {Transport} from "../common/Transport";
 
 (async () => {
-    const storageController = new StorageController();
-    await storageController.on();
+    const transport = new Transport();
+    await transport.connect();
 
-    const stringCodec = StringCodec();
-
-    await storageController.addSubscribe(StorageMethods.getMessageById, async (msg) => {
-        const id = +stringCodec.decode(msg.data);
-        const response = storageController.service.getMessageById(id);
-        msg.respond(stringCodec.encode(response))
-    })
+    await transport.subscribe(StorageMethods.getMessageById, StorageController.getMessageById);
+    console.log("Storage: started");
 })()

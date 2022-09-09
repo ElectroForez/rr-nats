@@ -7,8 +7,8 @@ export class Transport {
     public async connect() {
         this.natsConn = await nats.connect({
             servers: process.env.NATS_URL || "localhost"
-        });
-        console.log(`connected to NATS`);
+        })
+            .catch(error => {throw error});
     }
 
     public async disconnect() {

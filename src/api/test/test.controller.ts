@@ -3,21 +3,19 @@ import {StringCodec} from "nats";
 import {StorageMethods} from "../../common/constants";
 
 export class TestController {
+    private static transport: Transport;
+    private static sc = StringCodec();
 
-    private transport: Transport;
-
-    constructor() {
-        this.transport = new Transport();
+    static async init() {
+        TestController.transport = new Transport();
+        await TestController.transport.connect();
+        console.log('Test controller: init');
     }
 
-    async connect() {
-        await this.transport.connect();
-    }
-
-    async getTest() {
+    static async getMessage(id: number) {
         try {
-            const sc = StringCodec();
-            const result = await this.transport.request(StorageMethods.getMessageById, sc.encode("1"));
+            const result = await TestController.transport.request(StorageMethods.getMessageById,
+                TestController.sc.encode(String(id)));
             return result;
         } catch (e) {
             console.error(e);

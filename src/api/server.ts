@@ -10,7 +10,7 @@ export const createServer = async() => {
         const routesName = routesPath.split('.').slice(0, -1).join('.'); //delete .ts
         const {routes} = await import(routesName);
         server.route(routes);
-        console.log(`added routes from ${routesName}`)
+        console.log(`Server: added routes from ${routesName}`)
     }
 
     await server.start();
