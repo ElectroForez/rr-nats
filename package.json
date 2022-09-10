@@ -6,12 +6,15 @@
     "dev:watch": "tsc-watch --onSuccess 'npm start'"
   },
   "dependencies": {
+    "@hapi/boom": "^10.0.0",
     "@hapi/hapi": "^20.2.2",
     "@types/glob": "^8.0.0",
     "@types/hapi__hapi": "^20.0.12",
     "@types/node": "^18.7.15",
     "env-cmd": "^10.1.0",
     "glob": "^8.0.3",
+    "hapi-dev-errors": "^4.0.0",
+    "joi": "^17.6.0",
     "nats": "^2.7.1",
     "ts-node": "^10.9.1"
   },
