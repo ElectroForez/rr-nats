@@ -1,0 +1,42 @@
+version: '3.0'
+
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: api.Dockerfile
+    restart: always
+    hostname: api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - nats
+
+  storage:
+    build:
+      context: ./
+      dockerfile: storage.Dockerfile
+    restart: always
+    hostname: storage
+    depends_on:
+      - nats
+      - postgres
+
+  postgres:
+    hostname: postgres
+    image: postgres:14
+    environment:
+      PG_DATA: /var/lib/postgresql/data
+      POSTGRES_PASSWORD: root
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+  nats:
+    image: nats
+    hostname: nats
+    restart: always
+
+volumes:
+  pgdata:

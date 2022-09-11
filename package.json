@@ -1,8 +1,8 @@
 {
   "scripts": {
     "start": "npm run api & npm run storage",
-    "api": "env-cmd ts-node src/api/main.ts",
-    "storage": "env-cmd ts-node src/storage/main.ts",
+    "api": "env-cmd --no-override ts-node src/api/main.ts",
+    "storage": "env-cmd --no-override ts-node src/storage/main.ts",
     "dev:watch": "tsc-watch --onSuccess 'npm start'"
   },
   "dependencies": {
