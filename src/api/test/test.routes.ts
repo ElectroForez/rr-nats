@@ -21,7 +21,7 @@ export const routes = [
             return await TestController.getTestById(id);
         },
         options: {
-            validate: scheme.req.get
+            validate: scheme.req.get,
         }
     },
     {
@@ -45,7 +45,7 @@ export const routes = [
             return await TestController.putTest({id, ...payload});
         },
         options: {
-            validate: scheme.req.put
+            validate: scheme.req.put,
         }
     },
     {

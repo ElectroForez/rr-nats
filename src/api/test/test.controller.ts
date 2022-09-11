@@ -14,7 +14,7 @@ export default class TestController {
         TestController.transport = transport;
     }
 
-    static async getTestById(id: number) {
+    static async getTestById(id: number): Promise<Response> {
         const codecReq = JSONCodec<GetTestById>();
         const result = await TestController.transport.request(
             StorageMethods.getTestById,
@@ -26,7 +26,7 @@ export default class TestController {
         return response;
     }
 
-    static async postTest(test: Test) {
+    static async postTest(test: Test): Promise<Response> {
         const codecReq = JSONCodec<PostTest>();
         const result = await TestController.transport.request(
             StorageMethods.postTest,
@@ -38,7 +38,7 @@ export default class TestController {
         return response;
     }
 
-    static async putTest(test: Test) {
+    static async putTest(test: Test): Promise<Response> {
         const codecReq = JSONCodec<PutTest>();
         const result = await TestController.transport.request(
             StorageMethods.putTest,
@@ -50,7 +50,7 @@ export default class TestController {
         return response;
     }
 
-    static async deleteTestById(id: number) {
+    static async deleteTestById(id: number): Promise<Response> {
         const codecReq = JSONCodec<DeleteTestById>();
         const result = await TestController.transport.request(
             StorageMethods.deleteTestById,

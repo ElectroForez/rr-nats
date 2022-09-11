@@ -16,7 +16,7 @@ export const createServer = async() => {
     await server.register({
         plugin: HapiError,
         options: {
-            showErrors: true
+            showErrors: process.env.NODE_END === 'dev'
         }
     })
 
