@@ -1,6 +1,6 @@
 export const StorageMethods = {
-    getMessageById: 'storage.getMessageById',
-    postMessage: 'storage.postMessage',
-    deleteMessageById: 'storage.deleteMessageById',
-    putMessage: 'storage.putMessage',
+    getTestById: 'storage.getTestById',
+    postTest: 'storage.postTest',
+    deleteTestById: 'storage.deleteTestById',
+    putTest: 'storage.putTest',
 }

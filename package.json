@@ -10,15 +10,19 @@
     "@hapi/hapi": "^20.2.2",
     "@types/glob": "^8.0.0",
     "@types/hapi__hapi": "^20.0.12",
-    "@types/node": "^18.7.15",
     "env-cmd": "^10.1.0",
     "glob": "^8.0.3",
     "hapi-dev-errors": "^4.0.0",
     "joi": "^17.6.0",
     "nats": "^2.7.1",
-    "ts-node": "^10.9.1"
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1",
+    "typeorm": "^0.3.9"
   },
   "devDependencies": {
+    "@types/node": "^18.7.16",
+    "@types/validator": "^13.7.6",
     "tsc-watch": "^5.0.3"
   }
 }

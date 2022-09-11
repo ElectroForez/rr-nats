@@ -1,4 +1,4 @@
-import {StorageController} from "./storage.controller";
+import StorageController from "./storage.controller";
 import {StorageMethods} from "../common/constants"
 import Transport from "../common/Transport";
 
@@ -6,10 +6,12 @@ import Transport from "../common/Transport";
     const transport = new Transport();
     await transport.connect();
 
-    await transport.subscribe(StorageMethods.getMessageById, StorageController.getMessageById);
-    await transport.subscribe(StorageMethods.postMessage, StorageController.postMessage);
-    await transport.subscribe(StorageMethods.putMessage, StorageController.putMessage);
-    await transport.subscribe(StorageMethods.deleteMessageById, StorageController.deleteMessageById);
+    await StorageController.init();
+
+    await transport.subscribe(StorageMethods.getTestById, StorageController.getTestById);
+    await transport.subscribe(StorageMethods.postTest, StorageController.postTest);
+    await transport.subscribe(StorageMethods.putTest, StorageController.putTest);
+    await transport.subscribe(StorageMethods.deleteTestById, StorageController.deleteTestById);
 
     console.log("Storage: started");
 })()

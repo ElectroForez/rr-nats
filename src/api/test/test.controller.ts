@@ -1,23 +1,23 @@
 import Transport from "../../common/Transport";
 import {JSONCodec} from "nats";
 import {StorageMethods} from "../../common/constants";
-import {DeleteMessageById, GetMessageById, Message, PostMessage, PutMessage, Response} from "../../storage/interfaces";
+import {DeleteTestById, GetTestById, Test, PostTest, PutTest, Response} from "../../storage/interfaces";
 import Boom from "@hapi/boom";
 
 
-export class TestController {
+export default class TestController {
     private static transport: Transport;
     private static codecRes = JSONCodec<Response>();
 
-    static async init() {
-        TestController.transport = new Transport();
-        await TestController.transport.connect();
+    static setTransport(transport: Transport) {
+        if (TestController.transport) throw new Error("Transport already exists");
+        TestController.transport = transport;
     }
 
-    static async getMessageById(id: number) {
-        const codecReq = JSONCodec<GetMessageById>();
+    static async getTestById(id: number) {
+        const codecReq = JSONCodec<GetTestById>();
         const result = await TestController.transport.request(
-            StorageMethods.getMessageById,
+            StorageMethods.getTestById,
             codecReq.encode({id}));
         const response = TestController.codecRes.decode(result);
         if (response.error) {
@@ -26,11 +26,11 @@ export class TestController {
         return response;
     }
 
-    static async postMessage(msg: Message) {
-        const codecReq = JSONCodec<PostMessage>();
+    static async postTest(test: Test) {
+        const codecReq = JSONCodec<PostTest>();
         const result = await TestController.transport.request(
-            StorageMethods.postMessage,
-            codecReq.encode(msg));
+            StorageMethods.postTest,
+            codecReq.encode(test));
         const response = TestController.codecRes.decode(result);
         if (response.error) {
             throw Boom.badRequest(response.error);
@@ -38,11 +38,11 @@ export class TestController {
         return response;
     }
 
-    static async putMessage(msg: Message) {
-        const codecReq = JSONCodec<PutMessage>();
+    static async putTest(test: Test) {
+        const codecReq = JSONCodec<PutTest>();
         const result = await TestController.transport.request(
-            StorageMethods.putMessage,
-            codecReq.encode(msg));
+            StorageMethods.putTest,
+            codecReq.encode(test));
         const response = TestController.codecRes.decode(result);
         if (response.error) {
             throw Boom.notFound(response.error);
@@ -50,10 +50,10 @@ export class TestController {
         return response;
     }
 
-    static async deleteMessageById(id: number) {
-        const codecReq = JSONCodec<DeleteMessageById>();
+    static async deleteTestById(id: number) {
+        const codecReq = JSONCodec<DeleteTestById>();
         const result = await TestController.transport.request(
-            StorageMethods.deleteMessageById,
+            StorageMethods.deleteTestById,
             codecReq.encode({id}));
         const response = TestController.codecRes.decode(result);
         if (response.error) {

@@ -1,33 +1,38 @@
-import {Message} from "./interfaces";
+import {Test} from "./interfaces";
+import {Repository} from "typeorm";
 
 export class StorageService {
-    private messages: Message[] = [];
 
-    getMessageById(id: number): Message | undefined {
-        const result = this.messages.find(msg => msg.id === id);
+    constructor(private TestRepository: Repository<Test>) {
+    }
+
+    async getTestById(id: number) {
+        const result = await this.TestRepository.findOneBy({id});
         return result;
     }
 
-    postMessage(msg: Message): Message | undefined {
-        const candidate = this.getMessageById(msg.id);
+    async postTest(test: Test) {
+        const candidate = await this.getTestById(test.id);
         if (candidate) return;
 
-        this.messages.push(msg);
-        return msg;
+        const result = await this.TestRepository.save(test);
+        return result;
     }
 
-    putMessage(msg: Message): Message | undefined {
-        const candidate = this.getMessageById(msg.id);
+    async putTest(test: Test) {
+        const candidate = await this.getTestById(test.id);
         if (!candidate) return;
 
-        Object.assign(candidate, msg);
+        Object.assign(candidate, test);
+        await this.TestRepository.save(candidate);
         return candidate;
     }
 
-    deleteMessageById(id: number): Message | undefined {
-        const candidate = this.getMessageById(id);
+    async deleteTestById(id: number) {
+        const candidate = await this.getTestById(id);
         if (!candidate) return;
-        this.messages = this.messages.filter(msg => msg.id !== id);
+
+        await this.TestRepository.delete(candidate);
         return candidate;
     }
 }

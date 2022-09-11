@@ -1,10 +1,12 @@
-import {TestController} from "./test.controller";
+import TestController from "./test.controller";
 import Hapi from "@hapi/hapi";
-import Joi from "joi";
-import * as scheme from "./test.schemes";
+import * as scheme from "./test.scheme";
+import Transport from "../../common/Transport";
 
 (async () => {
-    await TestController.init();
+    const transport = new Transport();
+    await transport.connect();
+    TestController.setTransport(transport);
     console.log('Test controller: init');
 })();
 
@@ -16,10 +18,10 @@ export const routes = [
         path: path,
         handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit) => {
             const id: number = +request.params.id;
-            return await TestController.getMessageById(id);
+            return await TestController.getTestById(id);
         },
         options: {
-            validate: scheme.get
+            validate: scheme.req.get
         }
     },
     {
@@ -28,10 +30,10 @@ export const routes = [
         handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit) => {
             const id: number = +request.params.id;
             const payload: any = request.payload;
-            return await TestController.postMessage({id, ...payload});
+            return await TestController.postTest({id, ...payload});
         },
         options: {
-            validate: scheme.post
+            validate: scheme.req.post
         }
     },
     {
@@ -40,10 +42,10 @@ export const routes = [
         handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit) => {
             const id: number = +request.params.id;
             const payload: any = request.payload;
-            return await TestController.putMessage({id, ...payload});
+            return await TestController.putTest({id, ...payload});
         },
         options: {
-            validate: scheme.put
+            validate: scheme.req.put
         }
     },
     {
@@ -51,10 +53,10 @@ export const routes = [
         path: path,
         handler: async (request: Hapi.Request, h: Hapi.ResponseToolkit) => {
             const id: number = +request.params.id;
-            return await TestController.deleteMessageById(id);
+            return await TestController.deleteTestById(id);
         },
         options: {
-            validate: scheme.del
+            validate: scheme.req.delete
         }
     },
 ]

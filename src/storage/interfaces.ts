@@ -1,21 +1,21 @@
-export interface Message {
+export interface Test {
     id: number;
     content: string;
 }
 
-export interface GetMessageById {
+export interface GetTestById {
     id: number;
 }
 
-export interface PostMessage extends Message{}
+export interface PostTest extends Test{}
 
-export interface PutMessage extends Message{}
+export interface PutTest extends Test{}
 
-export interface DeleteMessageById {
+export interface DeleteTestById {
     id: number;
 }
 
 export interface Response {
-    message?: Message;
+    test?: Test;
     error?: string;
 }
