@@ -1,4 +1,4 @@
-import {Test} from "./interfaces";
+import {Test} from "../interfaces";
 import {Repository} from "typeorm";
 
 export class StorageService {

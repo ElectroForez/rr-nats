@@ -1,5 +1,5 @@
 import {Column, Entity, PrimaryColumn} from "typeorm";
-import * as interfaces from "../storage/interfaces";
+import * as interfaces from '../interfaces';
 
 @Entity()
 export class Test implements interfaces.Test {

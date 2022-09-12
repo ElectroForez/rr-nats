@@ -1,7 +1,4 @@
-export interface Test {
-    id: number;
-    content: string;
-}
+import {Test} from "../interfaces";
 
 export interface GetTestById {
     id: number;

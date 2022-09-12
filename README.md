@@ -15,14 +15,18 @@ npm install
 ````
 npm start
 ````
+or docker-compose
+```
+docker-compose up
+```
 
 ## Example of usage
-get message
+get test
 ```
 curl 'http://localhost:3000/api/test/1'
 ```
 
-post message
+post test
 ````
 curl --location --request POST 'http://localhost:3000/api/test/1' \
 --header 'Content-Type: application/json' \

@@ -13,6 +13,7 @@ export const createServer = async() => {
         server.route(routes);
         console.log(`Server: added routes from ${routesName}`);
     }
+
     await server.register({
         plugin: HapiError,
         options: {
@@ -21,7 +22,6 @@ export const createServer = async() => {
     })
 
     await server.start();
-
     return server;
 }
 

@@ -1,8 +1,9 @@
 import Transport from "../../common/Transport";
 import {JSONCodec} from "nats";
 import {StorageMethods} from "../../common/constants";
-import {DeleteTestById, GetTestById, Test, PostTest, PutTest, Response} from "../../storage/interfaces";
+import {DeleteTestById, GetTestById, PostTest, PutTest, Response} from "../../storage/interfaces";
 import Boom from "@hapi/boom";
+import {Test} from "../../interfaces";
 
 
 export default class TestController {
