@@ -34,3 +34,8 @@ curl --location --request POST 'http://localhost:3000/api/test/1' \
     "content": "test data"
 }'
 ````
+
+## Swagger
+After run, swagger is available on:
+
+http://localhost:3000/documentation

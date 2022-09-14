@@ -12,7 +12,7 @@ import Transport from "../../common/Transport";
 
 const path = "/api/test/{id}";
 
-export const routes = [
+export const routes: Hapi.ServerRoute[] = [
     {
         method: "GET",
         path: path,
@@ -21,7 +21,9 @@ export const routes = [
             return await TestController.getTestById(id);
         },
         options: {
-            validate: scheme.req.get
+            validate: scheme.req.get,
+            tags: ['api'],
+            response: {schema: scheme.res}
         }
     },
     {
@@ -33,7 +35,10 @@ export const routes = [
             return await TestController.postTest({id, ...payload});
         },
         options: {
-            validate: scheme.req.post
+            validate: scheme.req.post,
+            tags: ['api'],
+            response: {schema: scheme.res}
+
         }
     },
     {
@@ -45,7 +50,9 @@ export const routes = [
             return await TestController.putTest({id, ...payload});
         },
         options: {
-            validate: scheme.req.put
+            validate: scheme.req.put,
+            tags: ['api'],
+            response: {schema: scheme.res}
         }
     },
     {
@@ -56,7 +63,11 @@ export const routes = [
             return await TestController.deleteTestById(id);
         },
         options: {
-            validate: scheme.req.delete
-        }
+            validate: scheme.req.delete,
+            tags: ['api'],
+            response: {schema: scheme.res}
+        },
+
+
     },
 ]
