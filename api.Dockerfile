@@ -10,8 +10,6 @@ ENV API_PORT=3000
 
 ENV SWAGGER_HOST="0.0.0.0"
 
-ENV NATS_URL=nats
-
 COPY . .
 
 RUN npm install

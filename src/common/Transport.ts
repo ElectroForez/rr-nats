@@ -6,7 +6,7 @@ export default class Transport {
 
     public async connect() {
         this.natsConn = await nats.connect({
-            servers: process.env.NATS_URL || "localhost"
+            servers: process.env.NATS_SERVER || "localhost"
         })
             .catch(error => {throw error});
     }

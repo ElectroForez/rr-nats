@@ -7,6 +7,8 @@ services:
       dockerfile: api.Dockerfile
     restart: always
     hostname: api
+    environment:
+      NATS_SERVER: nats
     ports:
       - "3000:3000"
     depends_on:
@@ -18,6 +20,9 @@ services:
       dockerfile: storage.Dockerfile
     restart: always
     hostname: storage
+    environment:
+      NATS_SERVER: nats
+      PG_HOST: postgres
     depends_on:
       - nats
       - postgres
